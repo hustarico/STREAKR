@@ -1,0 +1,41 @@
+import { useState } from "react"
+import "../css/Card.css"
+import EndDayButton from "./EndDayButton"
+
+
+export default function Card({streak,setStreak,best,setBest}){
+
+    const [todayTime,setTodayTime]= useState(0);
+    const [input,setInput] = useState("");
+
+    function parse(input){
+        let num =parseInt(input); 
+        if(isNaN(num)){
+            alert("input must be a number")
+            num=0;
+        }
+        setTodayTime(prev =>(Math.max(prev+num,0)));
+
+    }
+
+
+
+    return (
+        <div className="Card">
+            <p>total time studied today</p>
+            <p>{todayTime}</p>
+            <p>mins</p>
+
+            <form action="none" onSubmit={e => {e.preventDefault();parse(input);setInput("");}}>
+                <input type="text" value={input} onChange={e => {setInput(e.target.value);}}/>
+                <input type="submit" />
+            </form>
+                <EndDayButton 
+                    streak = {streak} setStreak={setStreak}
+                    best = {best} setBest={setBest} 
+                    input = {input} setInput={setInput} 
+                    todayTime = {todayTime} setTodayTime={setTodayTime}/>
+        </div>
+    )
+}
+
