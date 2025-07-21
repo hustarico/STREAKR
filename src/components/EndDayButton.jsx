@@ -1,60 +1,55 @@
+import { useEffect } from "react";
+
 export default function EndDayButton({streak,setStreak,best,setBest,input,setInput,todayTime,setTodayTime}){
 
     
-    
-    const today = new Date();
-    const lastDate = new Date();
-    lastDate.setDate(today.getDate()-1);
+    function isYesterday(yesterdayDateString){ //string format should be YYYY-MM-DD eg, 2023-06-04 (month and day are 2 chars)
 
+        let todayDateString = getTodayDateString();
 
-    // const todayObj = {
-    //     day : today.getDate(),
-    //     month : today.getMonth(),
-    //     year : today.getFullYear()
-    // };
-    // let lastDateObj ={
-    //     day : lastDate.getDate(),
-    //     month : lastDate.getMonth(),
-    //     year : lastDate.getFullYear()
-    // };
-    function isYesterday(yesterdayIsoString){
-        let date= new Date().toISOString().slice(0,10);
-        localStorage.setItem("lastStudy",date.substring(0,8)+"10")
-        let next = localStorage.getItem("lastStudy");
+        let lastStudyDateString = yesterdayDateString || todayDateString; //falling back to today's string so that it's not yesterday > - <
 
-        console.log(date);
-        console.log(next);
-        console.log("--------");
+        let todayDateObj = new Date(todayDateString);
+        let lastStudyDateObj = new Date(lastStudyDateString);
 
-        let dateObj = new Date(date);
-        let nextObj = new Date(next);
+        todayDateObj.setHours(0,0,0,0);
+        lastStudyDateObj.setHours(0,0,0,0);
 
-        dateObj.setHours(0,0,0,0);
-        nextObj.setHours(0,0,0,0);
-
-        const diffInMs = dateObj - nextObj;
+        const diffInMs = todayDateObj - lastStudyDateObj;
         const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
 
-        console.log(diffInDays == 1);
-        
+        return diffInDays == 1
     }
 
     function endDay(){
-        if(todayTime>=0){
-            setStreak(prev=>prev+1);
+        if(todayTime>0){
             setInput("");
-            setTodayTime(0);
+            setTodayTime(0); 
             setBest(Math.max(best,todayTime));
-
-            isYesterday({},{});
-            // console.log(new Date(date).toISOString().slice(0,10));
-            // if(JSON.stringify(JSON.stringify(today))==JSON.stringify(lastDate) ){
-            //     console.log("true");
-            // }else console.log("false")
-
+            localStorage.setItem("todayTime",0);
             
+            if(isYesterday(localStorage.getItem("lastStudy"))){
+                setStreak(prev=>prev+1);
+            }else{
+                setStreak(1);
+            }
+
+            //this line should be after the if-statement
+            localStorage.setItem("lastStudy",getTodayDateString());
         }
     }
+
+    function getTodayDateString(){
+        let todayDateObj = new Date();
+        return `${todayDateObj.getFullYear()}-
+                ${String(todayDateObj.getMonth()+1).padStart(2,"0")}-
+                ${String(todayDateObj.getDate()).padStart(2,"0")}`.trim();
+    }
+
+    useEffect(()=>{
+        localStorage.setItem("streak",streak);
+        localStorage.setItem("best",best);
+    },[streak,best])
 
     return (
         <button onClick={endDay}>End day</button>

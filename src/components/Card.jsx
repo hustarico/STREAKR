@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "../css/Card.css"
 import EndDayButton from "./EndDayButton"
 import ResetButton from "./ResetButton";
@@ -6,7 +6,7 @@ import ResetButton from "./ResetButton";
 
 export default function Card({streak,setStreak,best,setBest}){
 
-    const [todayTime,setTodayTime]= useState(0);
+    const [todayTime,setTodayTime]= useState(Number(localStorage.getItem("todayTime"))||0);
     const [input,setInput] = useState("");
 
     function parse(input){
@@ -16,9 +16,12 @@ export default function Card({streak,setStreak,best,setBest}){
             num=0;
         }
         setTodayTime(prev =>(Math.max(prev+num,0)));
-
+        
     }
 
+    useEffect(function(){
+        localStorage.setItem("todayTime",todayTime);
+    },[todayTime]);
 
 
     return (
