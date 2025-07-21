@@ -1,6 +1,7 @@
 import { useState } from "react"
 import "../css/Card.css"
 import EndDayButton from "./EndDayButton"
+import ResetButton from "./ResetButton";
 
 
 export default function Card({streak,setStreak,best,setBest}){
@@ -35,6 +36,11 @@ export default function Card({streak,setStreak,best,setBest}){
                     best = {best} setBest={setBest} 
                     input = {input} setInput={setInput} 
                     todayTime = {todayTime} setTodayTime={setTodayTime}/>
+
+                <ResetButton state={streak} setter={setStreak} name={"streak"}/>
+                
+                <ResetButton state={best} setter={setBest} name={"best"}/>
+                
         </div>
     )
 }
