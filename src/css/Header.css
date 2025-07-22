@@ -1,5 +1,36 @@
+
+:root{
+    --background:#000019;
+    --primary:rgb(0, 187, 190);
+    
+    --secondary:#ffffff;
+}
+
 .Header{
     width: 100%;
     text-align: center;
-    border: 1px solid red;
+    /* border: 1px solid red; */
+
+    font-family: "Bebas Neue",sans-serif;
+    font-size: clamp(30px,3vw,50px);
+
+    background-color: var(--background);
+    color: var(--primary);
+    /* text-shadow: 0 0 10px var(--primary); */
+    animation: glow infinite 1s alternate ;
+}
+
+.Header > h1{
+    margin: 0px;
+    
+}
+
+@keyframes glow {
+    0%{
+        text-shadow: 0 0 1px var(--primary);
+    }
+    100%{
+        text-shadow: 0 0 40px var(--primary);
+        /* text-shadow: none; */
+    }
 }
