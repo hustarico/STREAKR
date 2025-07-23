@@ -1,6 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+
+:root{
+    --background:#000019;
+    --primary:rgb(0, 187, 190);
+    
+    --secondary:#ffffff;
+}
 
 body{
   padding: 0px;
   margin: 0px;
+  height: 100dvh;
+}
+
+div#root{
+
+  
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }

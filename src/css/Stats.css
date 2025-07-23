@@ -4,5 +4,18 @@
 
     width: 100%;
 
-    border:1px solid blue;
+    /* border:1px solid blue; */
+
+    background-color: var(--background);
+    color:var(--secondary);
+
+    font-family: "Roboto",sans-serif;
+    font-size: clamp(20px,1.4vw,25px);
+}
+.Stats>p{
+    transition: 0.3s;
+
+}
+.Stats > p:hover{
+    text-shadow: 0 0 15px var(--secondary);
 }

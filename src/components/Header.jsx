@@ -4,7 +4,7 @@ export default function Header(){
 
     return (
         <div className="Header">
-            <h1>Study Streak</h1>
+            <h1>Streakr</h1>
         </div>
     )
 }
