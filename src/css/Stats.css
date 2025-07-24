@@ -17,5 +17,5 @@
     margin: 0;
 }
 .Stats > p:hover{
-    text-shadow: 0 0 15px var(--secondary);
+    text-shadow: 0 0 5px var(--secondary);
 }
