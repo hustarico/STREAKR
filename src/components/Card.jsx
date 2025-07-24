@@ -10,7 +10,7 @@ export default function Card({streak,setStreak,best,setBest}){
     const [input,setInput] = useState("");
 
     function parse(input){
-        let num =parseInt(input); 
+        let num =Number(input); 
         if(isNaN(num)){
             alert("input must be a number")
             num=0;
@@ -27,12 +27,12 @@ export default function Card({streak,setStreak,best,setBest}){
     return (
         <div className="Card">
             <p>total time studied today</p>
-            <p>{todayTime}</p>
+            <p className="todayTime">{todayTime}</p>
             <p>mins</p>
 
             <form action="none" onSubmit={e => {e.preventDefault();parse(input);setInput("");}}>
                 <input type="text" value={input} onChange={e => {setInput(e.target.value);}}/>
-                <input type="submit" />
+                <input type="submit" value="add"/>
             </form>
                 <EndDayButton 
                     streak = {streak} setStreak={setStreak}

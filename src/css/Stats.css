@@ -14,7 +14,7 @@
 }
 .Stats>p{
     transition: 0.3s;
-
+    margin: 0;
 }
 .Stats > p:hover{
     text-shadow: 0 0 15px var(--secondary);
