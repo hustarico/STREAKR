@@ -44,7 +44,7 @@ export default function Card({streak,setStreak,best,setBest}){
                 
                 <ResetButton state={best} setter={setBest} name={"best"}/>
 
-                <p>Website made by <a href="https://github.com/hustarico/">hustarico</a>!</p>
+                <p>Website made by <a href="https://hussamtarteer.netlify.app" target="_blank">hustarico</a>!</p>
                 
         </div>
     )
