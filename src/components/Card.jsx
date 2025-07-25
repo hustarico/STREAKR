@@ -43,6 +43,8 @@ export default function Card({streak,setStreak,best,setBest}){
                 <ResetButton state={streak} setter={setStreak} name={"streak"}/>
                 
                 <ResetButton state={best} setter={setBest} name={"best"}/>
+
+                <p>Website made by <a href="https://github.com/hustarico/">hustarico</a>!</p>
                 
         </div>
     )
