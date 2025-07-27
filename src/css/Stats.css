@@ -1,6 +1,7 @@
 .Stats{
     display: flex;
     justify-content: space-around;
+    align-items: center;
 
     width: 100%;
 
@@ -18,4 +19,11 @@
 }
 .Stats > p:hover{
     text-shadow: 0 0 5px var(--secondary);
+}
+
+@media (max-width:350px) {
+    .Stats{
+        flex-direction: column;
+        gap: 10px;
+    }
 }
